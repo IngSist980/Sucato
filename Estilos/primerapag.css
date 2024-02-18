@@ -8,14 +8,14 @@
    
    body
    {
-     background: #4b6600;  
+     background: #ffffffff;  
    }
    
    header
    {
      overflow:hidden;
      margin-bottom: 20px;
-     background:#aab3ad;
+     background:#85817e;
      width:100%;
    
    }
@@ -40,7 +40,7 @@
    }
    header nav a:hover
    {
-     background-color: #66001f;
+     background-color: #00663f;
      -webkit-transition:all 500ms ;
      -o-transition:all 500ms ;
    }
@@ -56,8 +56,22 @@
     /* Agrega la imagen de fondo */
 
     background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+
+
     background-position: center; /* Centra la imagen */
     width: 100px;
     height: 100px ;
 
    }
+   .footer {
+    background-image: url('../ruta/a/tu/imagen.jpg');
+    background-repeat: repeat-x; /* Repite la imagen solo horizontalmente */
+    background-size: auto 10%; /* Estira la imagen horizontalmente */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 10%;
+}
+

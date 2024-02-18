@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    font-family: Georgia, serif;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.centrar a {
+    margin: 0 20px; /* Agrega un margen horizontal de 20px entre los enlaces */
+}
