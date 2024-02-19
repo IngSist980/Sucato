@@ -13,3 +13,26 @@ header {
 .centrar a {
     margin: 0 20px; /* Agrega un margen horizontal de 20px entre los enlaces */
 }
+
+/* Estilo para el footer */
+footer {
+    position: fixed; /* Fijar el footer en la parte inferior de la ventana del navegador */
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Ancho completo del footer */
+    background-color: #ffffff; /* Color de fondo del footer */
+    color: white; /* Color del texto del footer */
+    text-align: center; /* Alinear el texto al centro */
+    padding: 20px; /* Espaciado interno del footer */
+}
+
+
+/* Estilos para la imagen del footer */
+.imagen-footer {
+    display: block; /* Mostrar la imagen como un bloque */
+    margin: auto; /* Centrar horizontalmente */
+    max-width: 100%; /* Ancho máximo de la imagen */
+    height: auto; /* Altura automática para mantener la proporción de aspecto */
+    width: 200px; /* Ancho deseado para la imagen */
+    padding-top: 20px; /* Espaciado superior para separar la imagen del footer */
+}
