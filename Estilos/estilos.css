@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    background-color: #f0f0f0;
+}
+
+header{
+    background-color: white;
+}
+
+.nav-link:hover {
+    color: #000; 
+}
+
+.productos-titulo {
+    display: flex;
+    flex-direction: column;
+    padding-left: 100px;
+    margin: 15px;
+}
+
+.card-producto {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-producto h5{
+   font-size: medium;
+}
+
+
+/* Estilos para la imagen del footer */
+.imagen-footer {
+    display: block; /* Mostrar la imagen como un bloque */
+    margin: auto; /* Centrar horizontalmente */
+    max-width: 100%; /* Ancho máximo de la imagen */
+    height: auto; /* Altura automática para mantener la proporción de aspecto */
+    width: 200px; /* Ancho deseado para la imagen */
+    padding-top: 20px; /* Espaciado superior para separar la imagen del footer */
+}
+
+  
