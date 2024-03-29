@@ -1,16 +1,6 @@
 
 $(document).ready(function () {
     cargaProductos();
-
-    /*$("#btEnviar").click(function () {
-        ingresaTutoria($("#nombreAlumno").val(), $("#idProfesor").val(), $("#idDia").val(),
-        $("input[name='hora']:checked").val(), $("#asunto").val());
-    });
-
-    $("#btRestablecer").click(function () {
-        LimpiaCampos();
-    })*/
-
 })
 
 // Función AJAX productos
@@ -45,7 +35,7 @@ function ProductosJson(TextoJSON) {
                 html += "<div class='card-body d-flex flex-column'>";
                     html += "<h5 class='card-title flex-grow-1 text-center text-uppercase'>" + ObjetoJSON[i].nombre + "</h5>";
                     html += "<h5 class='card-text flex-grow-1 text-center'>" + '₡ ' + ObjetoJSON[i].precio + "</h5>";
-                    html += "<a href='#' class='text-primary text-center pb-4'>" + "Más Información" + "</a>";
+                    html += '<a id="idProducto" href="productoDetalle.php?idProducto=' + ObjetoJSON[i].id_producto + '" class="text-primary text-center pb-4">Más Información</a>';
                     html += "<a href='#' class='btn btn-success text-uppercase'>" + "Agregar al Carrito" + "</a>";
                 html += "</div>";
             html += "</div>";

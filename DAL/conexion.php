@@ -51,6 +51,33 @@ function getProductos($sql){
     return $rawdata;
 }
 
+function getProducto($sql) {
+    $retorno = null;
+
+    try {
+        $oConexion = connectDB();
+
+        //formato utf8
+        if(mysqli_set_charset($oConexion, "utf8")){
+            
+            if(!$result = mysqli_query($oConexion, $sql)) die(); 
+
+            while ($row = mysqli_fetch_array($result)) {
+                $retorno = $row;
+            }
+        }
+
+    } catch (\Throwable $th) {
+        //throw $th;
+        // Almacenar en bitacora el error (Apache)
+        echo $th;
+    }finally{
+        disconnectDB($oConexion);
+    }
+
+    return $retorno;
+}
+
 /*
 function InsertaDatos($pnombreAlumno, $pidProfesor, $pidDia, $phora, $pasunto) {
     $response = "";
@@ -134,28 +161,5 @@ function actualizaDatos($pidTutoria, $pnombreAlumno, $pidProfesor, $pidDia, $pho
    
 
     return $response;
-}
+}*/
 
-
-function getObjeto($sql){
-    $conn = connectDB();
-
-    mysqli_set_charset($conn, "utf8"); //formato datos
-
-    
-    if(!$result = mysqli_query($conn, $sql)) die();
-
-    $rawdata = null;
-
-    $i = 0;
-
-    while($row = mysqli_fetch_array($result)){
-        $rawdata = $row;
-        $i++;
-    }
-
-    disconnectDB($conn);
-
-    return $rawdata;
-}
-*/
