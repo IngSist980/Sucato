@@ -71,12 +71,8 @@ const addCarrito = () => {
             data: producto
         })
             .done(function (data){
-                if (data && !data.error) {
-                    ingresoCorrecto();
-                    console.log(data);
-                } else {
-                    alert('Error al agregar el producto al carrito.');
-                }
+                let ObjetoJSON = JSON.parse(data);
+                ObjetoJSON.success ? mensajeIngreso(true) : mensajeIngreso(false);
             });
     
     }catch (err) {
@@ -85,9 +81,17 @@ const addCarrito = () => {
 } 
 
 
-const ingresoCorrecto = () => {
-    // Mensaje ingreso correcto
-    const html = "<div id='mensaje-exito' class='d-flex justify-content-center'><p class='lead text-white bg-success p-2 text-center fs-5 w-50'>Producto agregado al carrito</p></div>";
+const mensajeIngreso = (flag) => {
+    let html = ' ';
+    if(flag){
+        // Mensaje ingreso correcto
+        html = "<div id='mensaje-exito' class='d-flex justify-content-center'><p class='lead text-white bg-success p-2 text-center fs-5 w-50'>Producto ingresado al carrito</p></div>";
+        
+    }else{
+        // Mensaje error
+        html = "<div id='mensaje-exito' class='d-flex justify-content-center'><p class='lead text-white bg-danger p-2 text-center fs-5 w-50'>Error! Producto no disponible</p></div>";
+    }
+
     $('#nombre-producto').before(html); 
 
     setTimeout(() => {
