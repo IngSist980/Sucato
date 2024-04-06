@@ -78,35 +78,37 @@ function getProducto($sql) {
     return $retorno;
 }
 
-/*
-function InsertaDatos($pnombreAlumno, $pidProfesor, $pidDia, $phora, $pasunto) {
+
+function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo) {
     $response = "";
     $conn = connectDB();
 
     mysqli_set_charset($conn, "utf8");
 
-    $stmt = $conn->prepare("INSERT INTO tutoria (alumno, idprofesor, idDia, hora, asunto) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("siiis", $inombre, $iprofesor, $idia, $ihora, $iasunto);
+    $stmt = $conn->prepare("INSERT INTO producto (id_categoria, nombre, descripcion, peso, precio, existencias, ruta_imagen, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issiiisi", $iIdCategoria, $iNombre, $iDescripcion, $iPeso, $iPrecio, $iExistencias, $iRutaImagen, $iActivo);
 
     // Setear parámetros
-    $inombre = $pnombreAlumno;
-    $iprofesor = $pidProfesor;
-    $idia = $pidDia;
-    $ihora = $phora;
-    $iasunto = $pasunto;
+    $iIdCategoria = $pIdCategoria;
+    $iNombre = $pNombre;
+    $iDescripcion = $pDescripcion;
+    $iPeso = $pPeso;
+    $iPrecio = $pPrecio; 
+    $iExistencias = $pExistencias; 
+    $iRutaImagen = $pRutaImagen;
+    $iActivo = $pActivo;
 
     $stmt->execute();
 
-    $response = "Se almacenó la tutoria satisfactoriamente";
+    $response = "Producto almacenado correctamente";
 
     $stmt->close();
     disconnectDB($conn);
-   
 
     return $response;
 }
 
-
+/*
 function EliminaDato($pidTutoria) {
     $response = "";
     $conn = connectDB();

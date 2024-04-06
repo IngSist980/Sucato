@@ -35,7 +35,7 @@ function ProductosJson(TextoJSON) {
                 html += "<div class='card-body d-flex flex-column'>";
                     html += "<h5 class='card-title flex-grow-1 text-center text-uppercase'>" + ObjetoJSON[i].nombre + "</h5>";
                     html += "<h5 class='card-text flex-grow-1 text-center'>" + '₡ ' + ObjetoJSON[i].precio + "</h5>";
-                    html += '<a id="idProducto" href="productoDetalle.php?idProducto=' + ObjetoJSON[i].id_producto + '" class="text-primary text-center pb-4">Más Información</a>';
+                    html += '<a id="idProducto" href="productoDetalle.php?idProducto=' + ObjetoJSON[i].id_producto + '" class="text-primary text-center pb-4 text-decoration-none">Más Información</a>';
                     html += "<a class='btn btn-success text-uppercase' onclick='addCarrito(" + i + ")' >" + "Agregar al Carrito" + "</a>";
 
                     html += "<input id='producto-id-" + i + "' name='idProducto' hidden readonly value='" + ObjetoJSON[i].id_producto + " '>";
