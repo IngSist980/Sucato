@@ -32,12 +32,18 @@ header{
 
 /* Estilos para la imagen del footer */
 .imagen-footer {
-    display: block; /* Mostrar la imagen como un bloque */
+    display: block; 
     margin: auto; /* Centrar horizontalmente */
     max-width: 100%; /* Ancho máximo de la imagen */
     height: auto; /* Altura automática para mantener la proporción de aspecto */
     width: 200px; /* Ancho deseado para la imagen */
     padding-top: 20px; /* Espaciado superior para separar la imagen del footer */
 }
+.footer{
+    width: 100% !important;
+    height: 420px !important;
+ }
 
   
+
+ 
