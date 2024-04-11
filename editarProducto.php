@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto | Nuevo</title>
+    <title>Producto | Detalle</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
     <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="estilos/estilos.css">
+    <link rel="stylesheet" href="Estilos/estilos.css">
     <script src="js/jquery-3.7.1.js"></script>
     <script src="js/jquery-ui-1.13.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="js/jquery-ui-1.13.2/jquery-ui.css">
-    <!-- <link rel="stylesheet" href="Estilos/producto.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="js/addProducto.js"></script>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header py-2">
@@ -28,7 +28,9 @@
                         <li class="nav-item bg-warning rounded mx-4"> 
                             <a class="nav-link text-white p-2 text-uppercase" href="productos.html">Productos</a>
                         </li>
-                        
+                        <li class="nav-item bg-warning rounded mx-4">
+                            <a class="nav-link text-white p-2 text-uppercase" href="contacto.html">Contacto</a>
+                        </li>
                         <li class="nav-item bg-warning rounded mx-4">
                             <a class="nav-link text-white p-2 text-uppercase" href="quienes_somos.html">Quiénes Somos</a>
                         </li>
@@ -37,6 +39,8 @@
             </div>
         </nav>
     </header>
+
+    <?php $idProducto = $_REQUEST['idProducto'];?>
 
     <!-- Elemento de diálogo para información -->
     <div id="pnlInfo" style="display: none;">
@@ -48,16 +52,16 @@
         <div id="blMensaje"></div>
     </div>
 
-    <!-- Crear producto -->
+    <!-- Editar producto -->
     <div class="container d-flex justify-content-center align-items-center gap-5 my-5">
         <div class="col-md-3 font-weight-bold border-end border-4">
-            <h2>Nuevo Producto</h2>
+            <h2>Editar Producto</h2>
         </div>
     
         <div class="col-md-9">
             <form class="d-flex flex-column" id="crearProducto" method="POST"  enctype="multipart/form-data">
                 <div class="mb-3">
-                    <input type="number" class="form-control" id="categoria" name="categoria" value=1 hidden>
+                    <input name="idProducto" type="text" id="idProducto" value='<?php echo $idProducto ?>' hidden/>
                 </div>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre Producto</label>
@@ -85,20 +89,31 @@
                         <option value="1">Activo</option>
                     </select>
                 </div>
+                <div class="contenedor-imagen">
+                    <img id="imagenProducto" src="" alt="Imagen del producto">
+                </div>
                 <div class="mb-3">
-                    <label for="fileInput" class="form-label">Seleccionar Imagen</label>
-                    <input type="file" class="form-control" id="ruta_imagen" name="ruta_imagen" accept="image/*" required>
+                    <label for="fileInput" class="form-label">Imagen del Producto</label>
+                    <input type="file" class="form-control" id="ruta_imagen" name="ruta_imagen" accept="image/*" onchange="cargaIMG(this);" required>
                 </div>
                 <div class="mt-3 d-flex justify-content-between">
                     <a href="/Sucato/productosAdmin.html" class="w-25 button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
                         <i class="fas fa-arrow-left" style="font-size: 20px;"></i>
                     </a>
-                    <button class="btn btn-success w-25 fs-5" id="btnCrear" type="button">Guardar</button>
+                    <button class="btn btn-success w-25 fs-5" id="btnEditar" type="button">Guardar</button>
                 </div>
             </div>
         </form>
+
     </div>
 
 
+    <footer>
+        <!-- <img src='imagenes/LOGOSU.jpg' class="imagen-footer"> -->
+    </footer>
+
+    <script src="js/editarProducto.js"></script>
+
 </body>
 </html>
+

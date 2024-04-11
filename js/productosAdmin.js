@@ -42,7 +42,7 @@ function ProductosJson(TextoJSON) {
             html += "No";
         }
         html += "</td>";
-        html += '<td><a id="idProducto" href="productoDetalle.php?idProducto=' + ObjetoJSON[i].id_producto + '" class="text-primary text-decoration-none">Editar</a></td>';
+        html += '<td><a id="idProducto" href="editarProducto.php?idProducto=' + ObjetoJSON[i].id_producto + '" class="text-primary text-decoration-none">Editar</a></td>';
 
         html += "</tr>"
     }

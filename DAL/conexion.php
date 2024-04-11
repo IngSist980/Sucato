@@ -129,39 +129,43 @@ function EliminaDato($pidTutoria) {
 
     return $response;
 }
+*/
 
-
-function actualizaDatos($pidTutoria, $pnombreAlumno, $pidProfesor, $pidDia, $phora, $pasunto) {
+function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo) {
     $response = "";
     $conn = connectDB();
 
-    mysqli_set_charset($conn, "utf8"); //formato datos
+    mysqli_set_charset($conn, "utf8");
 
-    $stmt = $conn->prepare("UPDATE tutoria 
-                            SET alumno= ?,
-                                idprofesor = ?,
-                                idDia = ?,
-                                hora = ?,
-                                asunto = ?
-                                WHERE id= ?");
-    $stmt->bind_param("siiisi", $inombre, $iprofesor, $idia, $ihora, $iasunto, $itutoria);
+    $stmt = $conn->prepare("UPDATE producto 
+                            SET nombre= ?,
+                                descripcion = ?,
+                                peso = ?,
+                                precio = ?,
+                                existencias = ?,
+                                ruta_imagen = ?,
+                                activo = ?
+                                WHERE id_producto= ?");
+    $stmt->bind_param("ssiiisii", $iNombre, $iDescripcion, $iPeso, $iPrecio, $iExistencias, $iRutaImagen, $iActivo, $iIdProducto);
 
     // Setear parámetros
-    $inombre = $pnombreAlumno;
-    $iprofesor = $pidProfesor;
-    $idia = $pidDia;
-    $ihora = $phora;
-    $iasunto = $pasunto;
-    $itutoria = $pidTutoria;
+    $iIdProducto = $pIdProducto;
+    $iNombre = $pNombre;
+    $iDescripcion = $pDescripcion;
+    $iPeso = $pPeso;
+    $iPrecio = $pPrecio; 
+    $iExistencias = $pExistencias; 
+    $iRutaImagen = $pRutaImagen;
+    $iActivo = $pActivo;
 
     $stmt->execute();
 
-    $response = "Se actualizó la tutoría correctamente";
+    $response = "Producto actualizado correctamente";
 
     $stmt->close();
     disconnectDB($conn);
    
 
     return $response;
-}*/
+}
 

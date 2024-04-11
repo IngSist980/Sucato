@@ -29,6 +29,15 @@ header{
    font-size: medium;
 }
 
+.contenedor-imagen {
+    max-width: 200px; 
+}
+
+.contenedor-imagen img {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+}
 
 /* Estilos para la imagen del footer */
 .imagen-footer {
