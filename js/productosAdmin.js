@@ -29,7 +29,7 @@ function ProductosJson(TextoJSON) {
 
     for (var i = 0; i < ObjetoJSON.length; i++) {
         // genera HTML dinámicamente
-        html += "<tr class='w-100'>"
+        html += "<tr class='w-100' id='tr" + ObjetoJSON[i].id_producto + "'>";
         html += "<td>" + (i+1) + "</td>"
         html += "<td>"  + ObjetoJSON[i].nombre + "</td>"
         html += "<td>"  + ObjetoJSON[i].precio + "</td>"
@@ -61,7 +61,9 @@ function eliminarProd(idProducto) {
         processData: false,
         contentType: false,
         success: function(response) {
-            alertaEliminado(response);
+            let respuesta = JSON.parse(response)
+            alertaEliminado(respuesta);
+            //console.log(respuesta);
         },
         error: function(xhr, status, error) {
             insercionFallida(false);
@@ -71,12 +73,13 @@ function eliminarProd(idProducto) {
 }
 
 
-const alertaEliminado = (flag) => {
+const alertaEliminado = (respuesta) => {
     let html = ' ';
-    if(!flag){
+
+    if(!respuesta.eliminado){
         html = "<div id='mensaje-exito' class='d-flex justify-content-center'><p class='lead text-white bg-danger p-2 text-center fs-5 w-50'>Error al eliminar, intente de nuevo</p></div>";
     }else{
-        // Mensaje error
+        $('#tr' + respuesta.idProducto).remove();
         html = "<div id='mensaje-exito' class='d-flex justify-content-center'><p class='lead text-white bg-success p-2 text-center fs-5 w-50'>Eliminado correctamente</p></div>";
     }
     
@@ -84,9 +87,9 @@ const alertaEliminado = (flag) => {
 
     setTimeout(() => {
         $('#mensaje-exito').detach();
-        setTimeout(() => {
-            window.location.replace("productosAdmin.html");
-        }, 1000);
-    }, 2000);
+        // setTimeout(() => {
+        //     window.location.replace("productosAdmin.html");
+        // }, 1000);
+    }, 3000);
 
 }
