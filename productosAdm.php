@@ -8,7 +8,7 @@ require_once "templates/header.html";
     <div class="container mt-3">
         <div id="contenedor-principal" class="d-flex my-5 justify-content-between font-weight-bold">
             <h2>Listado Productos</h2>
-            <a href="/Sucato/addProducto.php" class="button bg-success rounded text-light d-inline-flex align-items-center p-2 text-decoration-none">
+            <a href="addProducto.php" class="button bg-success rounded text-light d-inline-flex align-items-center p-2 text-decoration-none">
                 <i class="fas fa-plus mx-2"></i> NUEVO PRODUCTO
             </a>
         </div>

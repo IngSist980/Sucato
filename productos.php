@@ -42,7 +42,7 @@ require_once "templates/header.html";
                     <p>Snacks saludables a base de frutas</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-center col-md-2">
-                    <a href="/Sucato/productosAdm.php" class="button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
+                    <a href="productosAdm.php" class="button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
                         <i class="fa-solid fa-gear" style="font-size: 20px;"></i>
                     </a>
                 </div>
