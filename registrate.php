@@ -1,7 +1,10 @@
 <?php
-
 require_once "templates/header.html";
+
 ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/addUsuario.js"></script>
+
 
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start">
