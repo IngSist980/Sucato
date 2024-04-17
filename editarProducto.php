@@ -71,6 +71,7 @@ require_once "templates/header.html";
 
     </div>
 
+    <script src="js/editarProducto.js"></script>
 
 <?php
 require_once "templates/footer.html";

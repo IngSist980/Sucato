@@ -3,9 +3,6 @@
 require_once "templates/header.html";
 ?>
 
-
-
-
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start">
     <style>

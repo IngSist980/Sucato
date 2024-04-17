@@ -2,6 +2,7 @@
 require_once "templates/header.html";
 
 ?>
+    <script src="js/addProducto.js"></script>
 
     <!-- Elemento de diálogo para información -->
     <div id="pnlInfo" style="display: none;">
