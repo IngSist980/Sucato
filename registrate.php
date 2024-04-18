@@ -1,8 +1,8 @@
 <?php
-require_once "templates/header.html";
+require_once "templates/headerInicio.html";
 
 ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/addUsuario.js"></script>
 
 

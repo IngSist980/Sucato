@@ -1,6 +1,7 @@
 <?php
 
-function connectDB() {
+function connectDB()
+{
     $server = "localhost";
     $user = "root";
     $password = "";
@@ -10,19 +11,20 @@ function connectDB() {
     $conexion = mysqli_connect($server, $user, $password, $database);
 
     // 2. Verificar si la conexión se establecio
-    if (!$conexion){
+    if (!$conexion) {
         echo "Ocurrió un error al establecer la conexión con la base de datos: " . mysqli_connect_error();
     }
 
     return $conexion;
 }
 
-function disconnectDB($conexion) {
+function disconnectDB($conexion)
+{
 
     $close = mysqli_close($conexion);
 
     // 2. Verificar si la conexión se establecio
-    if ($close){
+    if ($close) {
         //echo "La desconexión de la base de datos fue exitosa";
     }
 
@@ -30,18 +32,20 @@ function disconnectDB($conexion) {
 }
 
 
-function getProductos($sql){
+function getProductos($sql)
+{
     $conexion = connectDB();
 
     mysqli_set_charset($conexion, "utf8");
 
-    if(!$result = mysqli_query($conexion, $sql)) die();
+    if (!$result = mysqli_query($conexion, $sql))
+        die();
 
     $rawdata = array();
 
-    $i= 0;
+    $i = 0;
 
-    while($row = mysqli_fetch_array($result)){
+    while ($row = mysqli_fetch_array($result)) {
         $rawdata[$i] = $row;
         $i++;
     }
@@ -51,16 +55,18 @@ function getProductos($sql){
     return $rawdata;
 }
 
-function getProducto($sql) {
+function getProducto($sql)
+{
     $retorno = null;
 
     try {
         $oConexion = connectDB();
 
         //formato utf8
-        if(mysqli_set_charset($oConexion, "utf8")){
-            
-            if(!$result = mysqli_query($oConexion, $sql)) die(); 
+        if (mysqli_set_charset($oConexion, "utf8")) {
+
+            if (!$result = mysqli_query($oConexion, $sql))
+                die();
 
             while ($row = mysqli_fetch_array($result)) {
                 $retorno = $row;
@@ -71,7 +77,7 @@ function getProducto($sql) {
         //throw $th;
         // Almacenar en bitacora el error (Apache)
         echo $th;
-    }finally{
+    } finally {
         disconnectDB($oConexion);
     }
 
@@ -79,7 +85,8 @@ function getProducto($sql) {
 }
 
 
-function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo) {
+function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo)
+{
     $response = "";
     $conn = connectDB();
 
@@ -93,8 +100,8 @@ function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, 
     $iNombre = $pNombre;
     $iDescripcion = $pDescripcion;
     $iPeso = $pPeso;
-    $iPrecio = $pPrecio; 
-    $iExistencias = $pExistencias; 
+    $iPrecio = $pPrecio;
+    $iExistencias = $pExistencias;
     $iRutaImagen = $pRutaImagen;
     $iActivo = $pActivo;
 
@@ -109,7 +116,8 @@ function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, 
 }
 
 
-function EliminaDato($pidProducto) {
+function EliminaDato($pidProducto)
+{
     $conn = connectDB();
 
     $stmt = $conn->prepare("DELETE FROM producto WHERE id_producto= ?");
@@ -119,16 +127,17 @@ function EliminaDato($pidProducto) {
 
     $stmt->bind_param("i", $idProducto);
 
-    $response = $stmt->execute(); 
+    $response = $stmt->execute();
 
     $stmt->close();
     disconnectDB($conn);
-   
+
     return $response;
 }
 
 
-function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo) {
+function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo)
+{
     $response = "";
     $conn = connectDB();
 
@@ -150,8 +159,8 @@ function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio,
     $iNombre = $pNombre;
     $iDescripcion = $pDescripcion;
     $iPeso = $pPeso;
-    $iPrecio = $pPrecio; 
-    $iExistencias = $pExistencias; 
+    $iPrecio = $pPrecio;
+    $iExistencias = $pExistencias;
     $iRutaImagen = $pRutaImagen;
     $iActivo = $pActivo;
 
@@ -161,8 +170,36 @@ function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio,
 
     $stmt->close();
     disconnectDB($conn);
-   
+
 
     return $response;
 }
 
+//Para usuarios
+function getUsuario($sql)
+{
+    $retorno = null;
+
+    try {
+        $oConexion = connectDB();
+
+        //formato utf8
+        if (mysqli_set_charset($oConexion, "utf8")) {
+
+            if (!$result = mysqli_query($oConexion, $sql))
+                die();
+
+            while ($row = mysqli_fetch_array($result)) {
+                $retorno = $row;
+            }
+        }
+
+    } catch (\Throwable $th) {
+
+        echo $th;
+    } finally {
+        disconnectDB($oConexion);
+    }
+
+    return $retorno;
+}

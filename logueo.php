@@ -1,8 +1,43 @@
 <?php
-require_once "templates/header.html";
 
+require_once "templates/headerInicio.html";
+require_once "functions/recoge.php";
+require_once "DAL/usuario.php";
+
+$errores = array();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = recogePost("username");
+    $password = recogePost("password");
+
+    if ($username == "") {
+        $errores[] = "No se digitó el usuario";
+    }
+    if ($password == "") {
+        $errores[] = "No se digitó la contraseña";
+    }
+
+    if (empty($errores)) {
+        $userData = getUsuarioByUsername($username);
+
+        if ($userData != null) {
+            $auth = password_verify($password, $userData['password']);
+            if ($auth) {
+                session_start();
+                $_SESSION['username'] = $userData['username'];
+                $_SESSION['id_usuario'] = $userData['id'];
+                $_SESSION['login'] = true;
+                header("Location: index.php");
+                exit();
+            } else {
+                $errores[] = "Contraseña incorrecta";
+            }
+        } else {
+            $errores[] = "Usuario no existe";
+        }
+    }
+}
 ?>
-
 
 <!-- Pills navs -->
 <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -51,7 +86,7 @@ require_once "templates/header.html";
 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4 d-inline-block">
-                    <input type="password" id="contraseña" class="form-control" />
+                    <input type="password" id="password" class="form-control" />
                     <label class="form-label" for="loginPassword">Contraseña</label>
                 </div>
             </div>
@@ -59,8 +94,8 @@ require_once "templates/header.html";
 
             <!-- Submit button -->
             <div class="container d-flex justify-content-center align-items-center" style="height: 10px;">
-                <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                    class="btn btn-primary mb-4" id="btnIngresar">Ingresar</button>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-4"
+                    id="btnIngresar">Ingresar</button>
             </div>
             <!-- Register buttons -->
             <div class="text-center">

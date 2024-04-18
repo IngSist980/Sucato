@@ -1,7 +1,7 @@
 <?php
 //header
 require_once "templates/header.html";
-
+require_once "DAL/validaSesion.php";
 ?>
 
 <!--Contenido principal-->

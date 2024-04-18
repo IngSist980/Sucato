@@ -87,9 +87,11 @@ if ($consultaUsuario->affected_rows > 0) {
 
     // Verificar si se insertaron los datos correctamente en la tabla de rol
     if ($consultaRol->affected_rows > 0) {
-        echo "Registro exitoso.";
+        // echo "Registro exitoso.
+        echo json_encode(["success" => true, "message" => "Registro exitoso."]);
     } else {
-        echo "Error al registrar el rol del usuario.";
+        // echo "Error al registrar el rol del usuario.
+        echo json_encode(["success" => false, "message" => "Error al registrar el usuario."]);
     }
 } else {
     echo "Error al registrar el usuario.";
