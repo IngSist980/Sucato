@@ -35,7 +35,7 @@ PRIMARY KEY (`id_usuario`));
 
 create table sucato.rol (
 id_rol INT NOT NULL AUTO_INCREMENT,
-nombre varchar(20),
+tipoRol varchar(20),
 id_usuario int,
 PRIMARY KEY (id_rol),
 foreign key fk_rol_usuario (id_usuario) references

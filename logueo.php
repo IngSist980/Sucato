@@ -56,15 +56,6 @@ require_once "templates/header.html";
                 </div>
             </div>
 
-            <!-- 2 column grid layout -->
-            <div class="container">
-                <div class="row mb-8">
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <!-- Simple link -->
-                        <a href="#!">¿Olvidó su contraseña?</a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Submit button -->
             <div class="container d-flex justify-content-center align-items-center" style="height: 10px;">

@@ -9,6 +9,7 @@ $(document).ready(function() {
         formData.append('segundoApellido', $('#segundoApellido').val());
         formData.append('correo', $('#correo').val());
         formData.append('telefono', $('#telefono').val());
+        formData.append('tipoRol', 'Cliente');
 
         // Datos hacia PHP mediante AJAX
         $.ajax({
