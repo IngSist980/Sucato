@@ -70,7 +70,28 @@
                             });
                         </script>
 
-
+                        <form id="reporteStock">
+                            <button class="btn btn-primary" type="button" id="generarReporteStock">Generar reporte de stock</button>
+                        </form>
+                        
+                        <script>
+                            document.querySelector("#generarReporteStock").addEventListener("click", function (event) {
+                                event.preventDefault();
+                                var xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        if (xhr.status === 200) {
+                                            alert(xhr.responseText);
+                                        } else {
+                                            alert("Error al generar el reporte de inventario.");
+                                        }
+                                    }
+                                };
+                                xhr.open("POST", "getProductosStock.php", true);
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr.send();
+                            });
+                        </script>
 
                     </div>
                     <div class="col-md-6">

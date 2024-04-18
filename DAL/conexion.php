@@ -51,6 +51,8 @@ function getProductos($sql){
     return $rawdata;
 }
 
+
+
 function getProducto($sql) {
     $retorno = null;
 
