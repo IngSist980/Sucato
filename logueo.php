@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Pills content -->
 <div class="tab-content">
     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-        <form>
+        <form method='POST'>
             <div class="text-center mb-3">
                 <p>Puedes ingresar sesión con tu red social:</p>
                 <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
@@ -80,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="logueo text-center">
                 <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4 d-inline-block">
-                    <input type="text" id="username" class="form-control" />
+                    <input type="text" id="username" name="username" class="form-control" />
                     <label class="form-label" for="loginName">Username</label>
                 </div>
 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4 d-inline-block">
-                    <input type="password" id="password" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="loginPassword">Contraseña</label>
                 </div>
             </div>

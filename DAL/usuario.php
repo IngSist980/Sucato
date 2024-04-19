@@ -5,7 +5,7 @@ function getUsuarioByUsername($username)
 {
     $conn = connectDB();
 
-    $stmt = $conn->prepare("SELECT id, username, password FROM usuario WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id_usuario, username, password FROM usuario WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
