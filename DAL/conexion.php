@@ -110,28 +110,25 @@ function InsertaDatos($pIdCategoria, $pNombre, $pDescripcion, $pPeso, $pPrecio, 
     return $response;
 }
 
-/*
-function EliminaDato($pidTutoria) {
-    $response = "";
+
+function EliminaDato($pidProducto) {
     $conn = connectDB();
 
-    $stmt = $conn->prepare("DELETE FROM tutoria WHERE id= ?");
-    $stmt->bind_param("i", $idTutoria);
+    $stmt = $conn->prepare("DELETE FROM producto WHERE id_producto= ?");
 
     // Setear parámetros
-    $idTutoria = $pidTutoria;
+    $idProducto = $pidProducto;
 
-    $stmt->execute();
+    $stmt->bind_param("i", $idProducto);
 
-    $response = "Se eliminó la tutoria correctamente";
+    $response = $stmt->execute(); 
 
     $stmt->close();
     disconnectDB($conn);
    
-
     return $response;
 }
-*/
+
 
 function actualizaDatos($pIdProducto, $pNombre, $pDescripcion, $pPeso, $pPrecio, $pExistencias, $pRutaImagen, $pActivo) {
     $response = "";

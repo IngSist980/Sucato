@@ -1,17 +1,18 @@
 * {
     box-sizing: border-box;
 }
-  
+
 body {
     background-color: #f0f0f0;
 }
 
-header{
+header {
     background-color: white;
+    width: 100%;
 }
 
 .nav-link:hover {
-    color: #000; 
+    color: #000;
 }
 
 .productos-titulo {
@@ -25,34 +26,43 @@ header{
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.card-producto h5{
-   font-size: medium;
+.card-producto h5 {
+    font-size: medium;
 }
 
 .contenedor-imagen {
-    max-width: 200px; 
+    max-width: 200px;
 }
 
 .contenedor-imagen img {
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Estilos para la imagen del footer */
 .imagen-footer {
-    display: block; 
-    margin: auto; /* Centrar horizontalmente */
-    max-width: 100%; /* Ancho máximo de la imagen */
-    height: auto; /* Altura automática para mantener la proporción de aspecto */
-    width: 200px; /* Ancho deseado para la imagen */
-    padding-top: 20px; /* Espaciado superior para separar la imagen del footer */
+    display: block;
+    margin: auto;
+    /* Centrar horizontalmente */
+    max-width: 100%;
+    /* Ancho máximo de la imagen */
+    height: auto;
+    /* Altura automática para mantener la proporción de aspecto */
+    width: 200px;
+    /* Ancho deseado para la imagen */
+    padding-top: 20px;
+    /* Espaciado superior para separar la imagen del footer */
 }
-.footer{
+
+.footer {
     width: 100% !important;
     height: 420px !important;
- }
+}
 
-  
-
- 
+.logueo {
+    margin: 0 auto;
+    /* Centrar horizontalmente */
+    max-width: 800px;
+    /* Ancho máximo del contenedor */
+}

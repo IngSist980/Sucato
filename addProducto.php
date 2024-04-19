@@ -1,42 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto | Nuevo</title>
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="estilos/estilos.css">
-    <script src="js/jquery-3.7.1.js"></script>
-    <script src="js/jquery-ui-1.13.2/jquery-ui.js"></script>
-    <link rel="stylesheet" href="js/jquery-ui-1.13.2/jquery-ui.css">
-    <!-- <link rel="stylesheet" href="Estilos/producto.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<?php
+require_once "templates/header.html";
+
+?>
     <script src="js/addProducto.js"></script>
-</head>
-<body>
-    <!-- Header -->
-    <header class="header py-2">
-        <nav class="navbar">
-            <div class="container d-flex flex-column ">
-                <div class="d-flex justify-content-center align-items-center">
-                    <a href="index.html"> <img class="navbar-brand" src='imagenes/LOGOBE.jpg'> </a>
-                    <h1 >BY SUCATO TRADINGS CR </h1>
-                </div>
-                <div class="mt-3">
-                    <ul class="navbar-nav d-flex flex-row">
-                        <li class="nav-item bg-warning rounded mx-4"> 
-                            <a class="nav-link text-white p-2 text-uppercase" href="productos.html">Productos</a>
-                        </li>
-                        
-                        <li class="nav-item bg-warning rounded mx-4">
-                            <a class="nav-link text-white p-2 text-uppercase" href="quienes_somos.html">Quiénes Somos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
     <!-- Elemento de diálogo para información -->
     <div id="pnlInfo" style="display: none;">
@@ -90,7 +56,7 @@
                     <input type="file" class="form-control" id="ruta_imagen" name="ruta_imagen" accept="image/*" required>
                 </div>
                 <div class="mt-3 d-flex justify-content-between">
-                    <a href="/Sucato/productosAdmin.html" class="w-25 button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
+                    <a href="/Sucato/productosAdmin.php" class="w-25 button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
                         <i class="fas fa-arrow-left" style="font-size: 20px;"></i>
                     </a>
                     <button class="btn btn-success w-25 fs-5" id="btnCrear" type="button">Guardar</button>
@@ -100,5 +66,7 @@
     </div>
 
 
-</body>
-</html>
+<?php
+require_once "templates/footer.html";
+
+?>
