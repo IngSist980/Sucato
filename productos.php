@@ -26,7 +26,7 @@ require_once "templates/header.html";
 </div>
 
 <!-- Productos -->
-<main class="pt-4">
+<main class="pt-4 principal-cont">
     <form method="POST">
         <div class="d-flex justify-content-between">
             <div id="contenedor-principal" class="productos-titulo col-md-6">

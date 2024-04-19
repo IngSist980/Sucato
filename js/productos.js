@@ -68,13 +68,28 @@ const addCarrito = (i) => {
         const existencias = $('#existencias-producto-' + i).val();
 
         const producto = {
-            idProducto: idProducto,
-            imagen: imagen,
-            nombre: nombre,
-            precio: precio,
-            existencias: existencias
+            idProducto,
+            imagen,
+            nombre,
+            precio,
+            existencias
         };
+        
+        flag = false;
 
+        let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
+
+        if(producto != null && existencias > 0){
+            carrito.push(producto);
+    
+            sessionStorage.setItem('carrito', JSON.stringify(carrito));
+    
+            flag = true;
+        }
+
+        mensajeIngreso(flag);
+        
+        /* Código anterior
         $.ajax({
             url: 'DAL/addProductoCarrito.php',
             method: 'POST',
@@ -84,7 +99,7 @@ const addCarrito = (i) => {
                 let ObjetoJSON = JSON.parse(data);
                 ObjetoJSON.success ? mensajeIngreso(true) : mensajeIngreso(false);
             });
-    
+        */
     }catch (err) {
         alert(err);
     }
@@ -102,7 +117,7 @@ const mensajeIngreso = (flag) => {
         html = "<div id='mensaje-exito-principal' class='d-flex justify-content-center'><p class='lead text-white bg-danger p-2 text-center fs-5 w-50'>Error! Producto no disponible</p></div>";
     }
 
-    $('#contenedor-principal').before(html); 
+    $('.principal-cont').before(html); 
 
     setTimeout(() => {
         $('#mensaje-exito-principal').detach();
