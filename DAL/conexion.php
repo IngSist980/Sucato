@@ -205,3 +205,74 @@ function getUsuario($sql)
 
     return $retorno;
 }
+
+
+// INSERTA FACTURA EN BD
+function ingresarFactura($pIdUsuario, $pMonto){
+    $retorno = null;
+
+    try{
+        // Conexión
+        $conexion = connectDB();
+
+        if(mysqli_set_charset($conexion, "utf8")){
+            $stmt = $conexion->prepare("INSERT INTO factura (id_usuario, fecha, total) VALUES (?, CURDATE(), ?)");
+            $stmt->bind_param("id", $iIdUsuario, $iMonto);
+
+            // Setear parámetros
+            $iMonto = $pMonto;
+            $iIdUsuario = $pIdUsuario;
+
+            // Ejecutar consulta
+            if ($stmt->execute()){
+                 // Obtener el identificador de la factura
+                $retorno = $stmt->insert_id;
+            }
+        }
+
+    } catch(\Throwable $e){
+        //echo $e;
+        $mensaje_error = "Error: " . $e->getMessage();
+        error_log($mensaje_error);
+    } finally{
+        disconnectDB($conexion);
+    }
+
+    return $retorno;
+}
+
+
+// INSERTA VENTA EN BD
+function ingresarVenta($idFactura, $idProducto, $precio, $cantidad) {
+    $retorno = false;
+
+    try {
+        // Conexión
+        $conexion = connectDB();
+
+        if(mysqli_set_charset($conexion, "utf8")) {
+            $stmt = $conexion->prepare("INSERT INTO sucato.venta (id_factura, id_producto, precio, cantidad) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("iiii", $iIdFactura, $iIdProducto, $iPrecio, $iCantidad);
+
+            // Setear parámetros
+            $iIdFactura = $idFactura;
+            $iIdProducto = $idProducto;
+            $iPrecio = $precio;
+            $iCantidad = $cantidad;
+
+            // Ejecutar consulta
+            if ($stmt->execute()) {
+                $retorno = true;
+            }
+        }
+
+    } catch (\Throwable $e) {
+        //echo $e;
+        $mensaje_error = "Error: " . $e->getMessage();
+        error_log($mensaje_error);
+    } finally {
+        disconnectDB($conexion);
+    }
+
+    return $retorno;
+}

@@ -17,7 +17,7 @@ $(document).ready(function () {
     })
 
     $("#btnFinalizar").on("click", function () {
-        //guardarFactura();
+        guardarFactura();
     })
     
 })
@@ -60,3 +60,31 @@ function cargaCarrito() {
 }
 
 
+function guardarFactura() {
+    // Cargar cada elemento del session storage
+    const carrito = JSON.parse(sessionStorage.getItem("carrito"));
+    if (carrito && carrito.length > 0) {
+        $.ajax({
+            url: 'DAL/factura.php',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(carrito),
+            success: function(response) {
+                let respuesta = JSON.parse(response);
+                const monto = respuesta.monto;
+                const flag = respuesta.flag;
+                //console.log(flag + ' ' + monto + ' ' + respuesta.username);
+                //imprimirFactura(flag, monto);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    } else {
+        console.log('El carrito está vacío');
+        const alertas = document.querySelector('.alertas');
+        let html = '<div class="container">';
+        html += `<p class="bg-danger text-white m-0 text-center p-2"><strong>EL CARRITO ESTÁ VACÍO</strong></p>`;
+        alertas.innerHTML = html;
+    }
+}

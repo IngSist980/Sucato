@@ -47,7 +47,6 @@ id_factura INT NOT NULL AUTO_INCREMENT,
 id_usuario INT NOT NULL,
 fecha date,
 total double,
-estado int,
 PRIMARY KEY (id_factura),
 foreign key fk_factura_usuario (id_usuario) references
 usuario(id_usuario)); 
