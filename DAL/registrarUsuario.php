@@ -21,6 +21,7 @@ $primer_apellido = recoge('primerApellido');
 $segundo_apellido = recoge('segundoApellido');
 $correo = recoge('correo');
 $telefono = recoge('telefono');
+// $tipoRol = recoge('tipoRol');
 
 $errores = [];
 
@@ -64,22 +65,42 @@ if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
     
 }
-
+//Enviar el dato a la tabla usuario
 // Preparar la consulta SQL para insertar los datos en la tabla
-$consulta = $conexion->prepare("INSERT INTO usuario (username, password, nombre, primer_apellido, segundo_apellido, correo, telefono, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1)");
+$consultaUsuario = $conexion->prepare("INSERT INTO usuario (username, password, nombre, primer_apellido, segundo_apellido, correo, telefono, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1)");
 
 // Vincular parámetros y ejecutar la consulta
-$consulta->bind_param("sssssss", $username, $hashed_password, $nombre, $primer_apellido, $segundo_apellido, $correo, $telefono);
-$consulta->execute();
+$consultaUsuario->bind_param("sssssss", $username, $hashed_password, $nombre, $primer_apellido, $segundo_apellido, $correo, $telefono);
+$consultaUsuario->execute();
 
-// Verificar si se insertaron los datos correctamente
-if ($consulta->affected_rows > 0) {
-    echo "Registro exitoso.";
+// Verificar si se insertaron los datos correctamente. Si se realizó, entonces va y guarda el tipoRol
+if ($consultaUsuario->affected_rows > 0) {
+    // Obtener el ID del usuario insertado
+    $idUsuario = $conexion->insert_id;
+
+    // Preparar la consulta SQL para insertar el rol del usuario en la tabla de rol
+    $consultaRol = $conexion->prepare("INSERT INTO rol (tipoRol, id_usuario) VALUES ('Cliente', ?)");
+
+    // Vincular parámetros y ejecutar la consulta para la tabla de rol
+    $consultaRol->bind_param("i", $idUsuario);
+    $consultaRol->execute();
+
+    // Verificar si se insertaron los datos correctamente en la tabla de rol
+    if ($consultaRol->affected_rows > 0) {
+        // echo "Registro exitoso.
+        echo json_encode(["success" => true, "message" => "Registro exitoso."]);
+    } else {
+        // echo "Error al registrar el rol del usuario.
+        echo json_encode(["success" => false, "message" => "Error al registrar el usuario."]);
+    }
 } else {
     echo "Error al registrar el usuario.";
 }
 
+
+
 // Cerrar la conexión y liberar los recursos
-$consulta->close();
+$consultaUsuario->close();
+$consultaRol->close();
 $conexion->close();
 ?>

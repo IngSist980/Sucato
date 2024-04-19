@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('#btnRegistrarse').on('click', function() {
+$(document).ready(function () {
+    $('#btnRegistrarse').on('click', function () {
         // Obtener datos del formulario
         const formData = new FormData();
         formData.append('username', $('#username').val());
@@ -17,12 +17,15 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             data: formData,
-            success: function(response) {
+            success: function (response) {
                 insercionExitosa(response);
+                console.log(response);
                 LimpiaCampos();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
+                éxito
                 insercionFallida(error);
+
             }
         });
     });
@@ -32,7 +35,12 @@ $(document).ready(function() {
 function insercionExitosa(TextoJSON) {
     $("#pnlInfo").dialog();
     $("#blInfo").html('<p>' + TextoJSON + '</p>');
-};
+    // Redirigir a la página de logueo después de 2 segundos
+    setTimeout(function () {
+        console.log("Redirigiendo a la página de inicio de sesión");
+        window.location.href = "logueo.php";
+    }, 2000);
+}
 
 function insercionFallida(TextoJSON) {
     $("#pnlMensaje").dialog();

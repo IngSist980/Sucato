@@ -65,6 +65,21 @@ const addCarrito = () => {
             existencias: existencias
         };
 
+        flag = false;
+
+        let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
+
+        if(producto != null && existencias > 0){
+            carrito.push(producto);
+    
+            sessionStorage.setItem('carrito', JSON.stringify(carrito));
+    
+            flag = true;
+        }
+
+        mensajeIngreso(flag);
+
+        /* Código anterior
         $.ajax({
             url: 'DAL/addProductoCarrito.php',
             method: 'POST',
@@ -74,7 +89,7 @@ const addCarrito = () => {
                 let ObjetoJSON = JSON.parse(data);
                 ObjetoJSON.success ? mensajeIngreso(true) : mensajeIngreso(false);
             });
-    
+        */
     }catch (err) {
         alert(err);
     }

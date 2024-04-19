@@ -1,8 +1,43 @@
 <?php
-require_once "templates/header.html";
 
+require_once "templates/headerInicio.html";
+require_once "functions/recoge.php";
+require_once "DAL/usuario.php";
+
+$errores = array();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = recogePost("username");
+    $password = recogePost("password");
+
+    if ($username == "") {
+        $errores[] = "No se digitó el usuario";
+    }
+    if ($password == "") {
+        $errores[] = "No se digitó la contraseña";
+    }
+
+    if (empty($errores)) {
+        $userData = getUsuarioByUsername($username);
+
+        if ($userData != null) {
+            $auth = password_verify($password, $userData['password']);
+            if ($auth) {
+                session_start();
+                $_SESSION['username'] = $userData['username'];
+                $_SESSION['id_usuario'] = $userData['id'];
+                $_SESSION['login'] = true;
+                header("Location: index.php");
+                exit();
+            } else {
+                $errores[] = "Contraseña incorrecta";
+            }
+        } else {
+            $errores[] = "Usuario no existe";
+        }
+    }
+}
 ?>
-
 
 <!-- Pills navs -->
 <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -20,7 +55,7 @@ require_once "templates/header.html";
 <!-- Pills content -->
 <div class="tab-content">
     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-        <form>
+        <form method='POST'>
             <div class="text-center mb-3">
                 <p>Puedes ingresar sesión con tu red social:</p>
                 <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
@@ -45,31 +80,22 @@ require_once "templates/header.html";
             <div class="logueo text-center">
                 <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4 d-inline-block">
-                    <input type="text" id="username" class="form-control" />
+                    <input type="text" id="username" name="username" class="form-control" />
                     <label class="form-label" for="loginName">Username</label>
                 </div>
 
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4 d-inline-block">
-                    <input type="password" id="contraseña" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="loginPassword">Contraseña</label>
                 </div>
             </div>
 
-            <!-- 2 column grid layout -->
-            <div class="container">
-                <div class="row mb-8">
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <!-- Simple link -->
-                        <a href="#!">¿Olvidó su contraseña?</a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Submit button -->
             <div class="container d-flex justify-content-center align-items-center" style="height: 10px;">
-                <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                    class="btn btn-primary mb-4" id="btnIngresar">Ingresar</button>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-4"
+                    id="btnIngresar">Ingresar</button>
             </div>
             <!-- Register buttons -->
             <div class="text-center">
