@@ -1,7 +1,6 @@
 <?php
 try {
     $myArray = require_once 'DAL/getProductosStock.php';
-    $activo= json_decode($myArray, TRUE);
  
     $archivo = fopen("archivos/stock.txt", "a");
     // escribe datos en el txt
@@ -10,10 +9,10 @@ try {
     }
  
     fclose($archivo);
-    echo "El archivo de inventario se ha generado correctamente.";
+    echo "El archivo de stock se ha generado correctamente.";
 } catch (\Throwable $th) {
     error_log($th);
-    echo("Error al generar el archivo de inventario: " . $th->getMessage());
+    echo("Error al generar el archivo de stock: " . $th->getMessage());
 }
  
  

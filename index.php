@@ -19,6 +19,10 @@ require_once "templates/header.html";
                         <button class="btn btn-primary" type="button" id="generarReporte">Generar reporte de inventario</button>
                     </form>
 
+                    <form id="reporteact">
+                        <button class="btn btn-primary" type="button" id="generarReporteAct">Generar reporte de activos</button>
+                    </form>
+
                     <script>
                         document.querySelector("#generarReporte").addEventListener("click", function (event) {
                             event.preventDefault();
@@ -37,6 +41,27 @@ require_once "templates/header.html";
                             xhr.send();
                         });
                     </script>
+                   
+                    <script>
+                        document.querySelector("#generarReporteAct").addEventListener("click", function (event) {
+                            event.preventDefault();
+                            var xhr = new XMLHttpRequest();
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr.status === 200) {
+                                        alert(xhr.responseText);
+                                    } else {
+                                        alert("Error al generar el reporte de Stock.");
+                                    }
+                                }
+                            };
+                            xhr.open("POST", "reporteStock.php", true);
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            xhr.send();
+                        });
+                    </script>
+
+                    
 
 
 
