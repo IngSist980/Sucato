@@ -61,7 +61,7 @@ require_once "templates/header.html";
                     <input type="file" class="form-control" id="ruta_imagen" name="ruta_imagen" accept="image/*" onchange="cargaIMG(this);" required>
                 </div>
                 <div class="mt-3 d-flex justify-content-between">
-                    <a href="/Sucato/productosAdm.php" class="w-25 button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
+                    <a href="productosAdm.php" class="w-25 button bg-dark rounded text-light d-inline-flex align-items-center justify-content-center p-2 text-decoration-none">
                         <i class="fas fa-arrow-left" style="font-size: 20px;"></i>
                     </a>
                     <button class="btn btn-success w-25 fs-5" id="btnEditar" type="button">Guardar</button>
