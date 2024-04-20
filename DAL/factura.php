@@ -54,7 +54,12 @@ if ($data && is_array($data)) {
                 // Insertar venta asociada a la factura generada
                 if ($idFactura) {
                     if (ingresarVenta($idFactura, $idProducto, $precio, $cantidad)) {
-                        $flag = true;
+                        try{
+                            actualizaStock($idProducto, $cantidad);
+                            $flag = true;
+                        }catch (\Throwable $th) {
+                            error_log("Error al actualizar stock");
+                        }
                     } else {
                         error_log("Error al ingresar la venta");
                     }

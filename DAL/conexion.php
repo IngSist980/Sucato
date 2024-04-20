@@ -276,3 +276,43 @@ function ingresarVenta($idFactura, $idProducto, $precio, $cantidad) {
 
     return $retorno;
 }
+
+function actualizaStock($pIdProducto, $pCantidad)
+{
+    $response = "";
+    $conn = connectDB();
+
+    mysqli_set_charset($conn, "utf8");
+
+    // Consultar existencias actuales del producto
+    $query = "SELECT existencias FROM producto WHERE id_producto = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $iIdProducto);
+
+    // Setear parámetros
+    $iIdProducto = $pIdProducto;
+
+    $stmt->execute();
+    $stmt->bind_result($existencias);
+    $stmt->fetch();
+    $stmt->close();
+
+    $nuevasExistencias = $existencias - $pCantidad;
+
+    // Actualizar existencias de productos
+    $stmt = $conn->prepare("UPDATE producto SET existencias = ? WHERE id_producto= ?");
+    $stmt->bind_param("ii", $nuevasExistencias, $iIdProducto);
+
+    // Setear parámetros
+    $iIdProducto = $pIdProducto;
+
+    $stmt->execute();
+
+    $response = "Producto actualizado correctamente";
+
+    $stmt->close();
+    disconnectDB($conn);
+
+
+    return $response;
+}

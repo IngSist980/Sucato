@@ -30,7 +30,7 @@ function cargaCarrito() {
 
    if(carrito && carrito.length > 0){
        contenedorProductos.innerHTML = '';
-
+       let monto = 0; 
        carrito.forEach(producto => {
            const productoHTML = `
                <div class="row mb-4 d-flex justify-content-between align-items-center">
@@ -53,7 +53,15 @@ function cargaCarrito() {
            `;
            // Insertar html productos
            contenedorProductos.innerHTML += productoHTML;
+
+           monto = monto + parseFloat(producto.precio);
        });
+       i = carrito.length;
+
+       // Mostrar monto y cantidad en HTML
+       $('#cantidadArticulos').text('Articulos: ' + i);
+       $('#montoFinal').text('₡' + monto);
+
    } else {
         contenedorProductos.innerHTML = "<p>CARRITO VACÍO</p>";
    }
@@ -73,8 +81,9 @@ function guardarFactura() {
                 let respuesta = JSON.parse(response);
                 const monto = respuesta.monto;
                 const flag = respuesta.flag;
+                const name = respuesta.username;
                 //console.log(flag + ' ' + monto + ' ' + respuesta.username);
-                //imprimirFactura(flag, monto);
+                imprimirFactura(flag, monto, name);
             },
             error: function(xhr, status, error) {
                 console.error(xhr.responseText);
@@ -86,5 +95,55 @@ function guardarFactura() {
         let html = '<div class="container">';
         html += `<p class="bg-danger text-white m-0 text-center p-2"><strong>EL CARRITO ESTÁ VACÍO</strong></p>`;
         alertas.innerHTML = html;
+    }
+}
+
+
+// Impresión de factura
+function imprimirFactura(flag, monto, usuario) {
+    const alertas = document.querySelector('.alertas');
+    let html = '<div class="container">';
+
+    if (!flag && usuario == null) {
+        //console.log('Error al generar factura');
+        html += `<p class="bg-danger text-white m-0 text-center p-2"><strong>ERROR! DEBE INICIAR SESIÓN</strong></p>`;
+        alertas.innerHTML = html;
+    } else {
+        // Limpiar contenido modal
+        const modalDialog = document.querySelector('.modal-dialog');
+        modalDialog.innerHTML = '';
+
+        // HTML factura
+        let facturaHTML = `
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title">Factura</h5>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Usuario:</strong> ${usuario}</p>
+                    <p><strong>Productos:</strong></p>
+                    <ul>`;
+        
+        // Obtener carrito e imprimir cada producto
+        const productos = JSON.parse(sessionStorage.getItem('carrito'));
+        productos.forEach(producto => {
+            facturaHTML += `<li>${producto.nombre}: $${producto.precio}</li>`;
+        });
+
+        facturaHTML += `</ul>
+                    <p><strong>Monto Final:</strong> $${monto}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>`;
+
+        modalDialog.innerHTML = facturaHTML;
+
+        $('#contenedor-productos').remove();
+        // Abrir modal factura
+        $('#facturaModal').modal('show');
+        // Limpiar session storage
+        sessionStorage.clear(); 
     }
 }
