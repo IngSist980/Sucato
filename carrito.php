@@ -39,13 +39,12 @@ require_once "templates/header.html";
                                         <hr class="my-4">
 
                                         <div class="d-flex justify-content-between mb-4">
-                                            <h5 class="text-uppercase">Articulos #</h5>
-                                            <h5>$ 00</h5>
+                                            <h5 id="cantidadArticulos" class="text-uppercase"></h5>
                                         </div>
 
                                         <div class="d-flex justify-content-between mb-5">
                                             <h5 class="text-uppercase">Monto Total</h5>
-                                            <!-- <h5>$ 00</h5> -->
+                                            <h5 id="montoFinal"></h5>
                                         </div>
 
                                         <div class="d-flex flex-column gap-3">
@@ -61,6 +60,13 @@ require_once "templates/header.html";
             </div>
         </div>
     </section>
+
+
+<!-- Factura generada     -->
+<div class="modal" id="facturaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    </div>
+</div>
 
 <script src="js/carrito.js"></script>
 
