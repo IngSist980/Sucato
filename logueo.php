@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($auth) {
                 session_start();
                 $_SESSION['username'] = $userData['username'];
-                $_SESSION['id_usuario'] = $userData['id'];
+                $_SESSION['id_usuario'] = $userData['id_usuario'];
                 $_SESSION['login'] = true;
                 header("Location: index.php");
                 exit();
@@ -106,8 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </div>
 <!-- Pills content -->
-
-
 
 
 <?php
