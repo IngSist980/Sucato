@@ -79,3 +79,7 @@ VALUES
 (1, 'Chocolate Banano', 'Bolitas de chocolate rellenas de banano deshidratado', 130, 2350, 12, 'Chocolate-banano.jpg', true), 
 (1, 'Mix tropical de frutas', 'Gluten free', 80, 3500, 18, 'mix-frutas.jpg', true),
 (1, 'Meriendas saludables', '6 packs', 300, 2450, 10, 'meriendasaludable2.jpg', true);
+
+
+INSERT INTO ROL (tipoRol, id_usuario) 
+VALUES ('Admin', 1);

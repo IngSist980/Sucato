@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirige a la página de inicio de sesión o a donde desees.
-header("Location: ../../logueo.php");
+header("Location: ../logueo.php");
 exit;
 ?>

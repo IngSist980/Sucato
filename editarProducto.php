@@ -1,6 +1,11 @@
 <?php
 require_once "templates/header.html";
 
+session_start();
+
+if(!isset($_SESSION['rol']['rolAdmin'])){
+    header('location: logueo.php');
+}
 ?>
 
 

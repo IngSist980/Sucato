@@ -316,3 +316,31 @@ function actualizaStock($pIdProducto, $pCantidad)
 
     return $response;
 }
+
+
+function rolAdmin($sql)
+{
+    $retorno = null;
+
+    try {
+        $oConexion = connectDB();
+
+        //formato utf8
+        if (mysqli_set_charset($oConexion, "utf8")) {
+
+            if (!$result = mysqli_query($oConexion, $sql)) die();
+
+            while ($row = mysqli_fetch_array($result)) {
+                $retorno = $row;
+            }
+        }
+
+    } catch (\Throwable $th) {
+        $mensaje_error = "Error: " . $th->getMessage();
+        error_log($mensaje_error);
+    } finally {
+        disconnectDB($oConexion);
+    }
+
+    return $retorno;
+}

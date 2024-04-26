@@ -27,6 +27,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['id_usuario'] = $userData['id_usuario'];
                 $_SESSION['login'] = true;
+                
+                // Guardar rol en $_SESSION
+                $rol = getRol($userData['id_usuario']);
+                if($rol !== null){
+                    if (!isset($_SESSION['rol'])) {
+                        $_SESSION['rol'] = null;
+                    }
+                    
+                    $rolSession = array(
+                        'rolAdmin' => true,
+                        'tipoRol' => $rol['tipoRol']
+                    );
+                    $_SESSION['rol'] = $rolSession;
+                }
+
                 header("Location: index.php");
                 exit();
             } else {

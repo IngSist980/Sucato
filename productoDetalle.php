@@ -5,7 +5,7 @@ require_once "templates/header.html";
 
     <?php $idProducto = $_REQUEST['idProducto'];?>
 
-    <form method='POST'>
+    <form method='POST' class="mb-5">
         <input name="idProducto" type="text" id="idProducto" value='<?php echo $idProducto ?>' hidden/>
         <div id="nombre-container" class="container my-4">
             <h2 id="nombre-producto" class="fw-bold"></h2>

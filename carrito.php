@@ -23,9 +23,8 @@ require_once "templates/header.html";
                                         </div>
                                         <hr class="my-4">
 
-                                        <!-- Aquí es donde se cargarán dinámicamente los productos -->
+                                        <!-- Listado productos -->
                                         <div id="contenedor-productos">
-                                            <!-- El contenido de los productos se generará dinámicamente desde JavaScript -->
                                         </div>
 
                                         <div class="pt-5">

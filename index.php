@@ -13,15 +13,15 @@ require_once "DAL/validaSesion.php";
                     <h2>Bienvenidos a SUCATO TRADINGS</h2>
                     <p>Somos una empresa líder en la distribución de productos de alta calidad. Contamos con un amplio
                         catálogo de productos para satisfacer todas tus necesidades.</p>
-                    <a href="productos.php" class="btn btn-primary">Ver Productos</a>
+                    
+                    <?php if(isset($_SESSION['rol']['rolAdmin']) && $_SESSION['rol']['rolAdmin']): ?>
+                        <form id="reporteForm">
+                            <button class="btn btn-primary" type="button" id="generarReporte">Generar reporte de inventario</button>
+                        </form>
 
-                    <form id="reporteForm">
-                        <button class="btn btn-primary" type="button" id="generarReporte">Generar reporte de inventario</button>
-                    </form>
-
-                    <form id="reporteact">
-                        <button class="btn btn-primary" type="button" id="generarReporteAct">Generar reporte de activos</button>
-                    </form>
+                        <form id="reporteact">
+                            <button class="btn btn-primary" type="button" id="generarReporteAct">Generar reporte de activos</button>
+                        </form>
 
                     <script>
                         document.querySelector("#generarReporte").addEventListener("click", function (event) {
@@ -60,6 +60,7 @@ require_once "DAL/validaSesion.php";
                             xhr.send();
                         });
                     </script>
+                    <?php endif; ?>
 
                     
 
